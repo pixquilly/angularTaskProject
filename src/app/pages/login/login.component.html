@@ -1,2 +1,54 @@
-<p>login works!</p>
-<p-button label="Check"></p-button>
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo">
+      <i class="pi pi-lock" style="font-size: 2rem; color: var(--primary-color);"></i>
+    </div>
+    <h2>Log in Your Account</h2>
+    <p class="subtitle">Please enter your credentials to access your account.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="email">Email Address *</label>
+        <input
+          pInputText
+          id="email"
+          formControlName="username"
+          placeholder="username@app.com"
+          [class.ng-invalid]="loginForm.get('username')?.touched && loginForm.get('username')?.invalid"
+        />
+        <small class="hint">This is a hint text</small>
+      </div>
+
+      <div class="field">
+        <label for="password">Password *</label>
+        <p-password
+          id="password"
+          formControlName="password"
+          placeholder="••••••••"
+          [toggleMask]="true"
+          [class.ng-invalid]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
+        ></p-password>
+        <small class="hint">This is a hint text</small>
+      </div>
+
+      <div class="options">
+        <div class="remember">
+          <p-checkbox formControlName="rememberMe" binary="true"></p-checkbox>
+          <label>Remember Me</label>
+        </div>
+        <a href="#" class="forgot">Forget Password ?</a>
+      </div>
+
+      <p-button
+        type="submit"
+        label="Log in"
+        [disabled]="loginForm.invalid"
+        styleClass="p-button-primary p-button-lg"
+      ></p-button>
+
+      <div class="register">
+        Don’t have an account? <a href="#">Register Now</a>
+      </div>
+    </form>
+  </div>
+</div>
