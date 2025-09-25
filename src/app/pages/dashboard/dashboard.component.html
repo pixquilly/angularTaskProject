@@ -1,0 +1,73 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="app-header">
+    <div class="logo">
+      <i class="pi pi-lock" style="font-size: 1.5rem; color: #1a73e8;"></i>
+    </div>
+    <div class="nav">
+      <a routerLink="/dashboard" [class.active]="isRouteActive('/dashboard')">Dashboard</a>
+      <a routerLink="/tasks" [class.active]="isRouteActive('/tasks')">Tasks</a>
+      <a routerLink="/messages" [class.active]="isRouteActive('/messages')">Messages</a>
+    </div>
+    <div class="header-right">
+      <select [(ngModel)]="language">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+      </select>
+      <i class="pi pi-search" style="margin: 0 12px;"></i>
+      <img src="https://via.placeholder.com/32" alt="User" class="user-avatar" />
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Dashboard</h2>
+
+    <!-- Charts Row -->
+    <div class="charts-row">
+      <!-- Clients Chart -->
+      <div class="chart-card">
+        <h3>Clients</h3>
+        <p-chart type="line" [data]="clientsChartData" [options]="chartOptions"></p-chart>
+      </div>
+
+      <!-- Analytics Chart -->
+      <div class="chart-card">
+        <h3>Analytics</h3>
+        <p-chart type="bar" [data]="analyticsChartData" [options]="chartOptions"></p-chart>
+      </div>
+    </div>
+
+    <!-- Recently Task Table -->
+    <div class="table-section">
+      <h3>Recently Task</h3>
+      <p-table [value]="tasks" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3%"></th>
+            <th>Client</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Received on</th>
+            <th>More</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-task>
+          <tr>
+            <td><p-checkbox></p-checkbox></td>
+            <td>
+              <img src="https://via.placeholder.com/24" alt="Avatar" class="avatar" />
+              {{ task.client }}
+            </td>
+            <td>{{ task.task }}</td>
+            <td>
+              <span [class]="getStatusClass(task.status)">{{ task.status }}</span>
+            </td>
+            <td>{{ task.receivedOn }}</td>
+            <td><i class="pi pi-ellipsis-v"></i></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
