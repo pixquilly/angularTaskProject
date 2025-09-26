@@ -13,60 +13,11 @@ import { AnalyticsChartData, ClientChartData } from '../../core/interfaces/chart
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   imports: [
-    FormsModule,
-    ChartModule,
-    TableModule,
-    CheckboxModule,
-    AsyncPipe,
     RouterOutlet
   ]
 })
 export class DashboardComponent{
 
-  constructor(private router: Router, private fakerService: FakeService) {
-    
-    this.avatarUrls = this.fakerService.generateUserAvatars(100);
-    this.tasks = this.fakerService.generateTasks(100);
-
-    this.clientsChartData$ = this.fakerService.generateClientsChartData();
-
-    this.analyticsChartData$ = this.fakerService.generateAnalyticsChartData();
-
-  }
-
-  avatarUrls: string[];
-  tasks;
-  clientsChartData$: Observable<ClientChartData>;
-
-  language = 'en';
-
-  analyticsChartData$: Observable<AnalyticsChartData>;
-
-  chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: false }
-    },
-    scales: {
-      y: { beginAtZero: true }
-    }
-  };
-
-  
-
-  isRouteActive(route: string): boolean {
-    return this.router.url === route;
-  }
-
-  getStatusClass(status: string): string {
-    switch (status) {
-      case 'Draft': return 'status-draft';
-      case 'In Progress': return 'status-in-progress';
-      case 'On Review': return 'status-on-review';
-      case 'Approved': return 'status-approved';
-      default: return '';
-    }
-  }
-
-  
+  constructor() {}
+ 
 }

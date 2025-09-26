@@ -26,7 +26,7 @@ export class NavComponent {
   }
   
   avatarUrl;
-  logoUrl: string = "src/assets/logo.png";
+  logoUrl: string = "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg";
 
   language = 'EN';
   languages = [

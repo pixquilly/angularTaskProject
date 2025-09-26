@@ -13,6 +13,10 @@ import { IAuthService } from '../../core/interfaces/auth-service.interface';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: [
+    './login.component.scss',
+    '../../../styles/pages/_login.scss'
+  ],
   imports: [
     ReactiveFormsModule,
     InputTextModule,
