@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
-import { delay, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 
 export interface Task {
   client: string;
@@ -9,9 +9,29 @@ export interface Task {
   receivedOn: string;
 }
 
-export interface ChartData {
+export interface ClientChartDataset {
+  label: string;
+  data: number[];
+  borderColor: string;
+  backgroundColor?: string;
+  fill: boolean;
+  tension?: number;
+}
+
+export interface ClientChartData {
   labels: string[];
-  datasets: { label: string; data: number[]; borderColor: string; fill: boolean }[];
+  datasets: ClientChartDataset[];
+}
+
+export interface AnalyticsChartDataset {
+  label: string;
+  data: number[];
+  backgroundColor: string;
+}
+
+export interface AnalyticsChartData {
+  labels: string[];
+  datasets: AnalyticsChartDataset[];
 }
 
 @Injectable({
@@ -38,7 +58,7 @@ export class FakeService {
     });
   }
 
-  generateClientsChartData() {
+  generateClientsChartData(): Observable<ClientChartData> {
     const months = [
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
@@ -58,6 +78,37 @@ export class FakeService {
         fill: false,
         tension: 0.4
       }]
+    }).pipe(delay(300)); // simulate API latency
+  }
+
+  generateAnalyticsChartData(): Observable<AnalyticsChartData> {
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    const revenueData = months.map(() =>
+      Math.floor(Math.random() * 90) + 30 // 30–120
+    );
+
+    const marginData = revenueData.map(val =>
+      val + Math.floor(Math.random() * 30) + 10 // always higher than revenue
+    );
+
+    return of({
+      labels: months,
+      datasets: [
+        {
+          label: 'Revenue',
+          data: revenueData,
+          backgroundColor: '#1a73e8'
+        },
+        {
+          label: 'Gross Margin',
+          data: marginData,
+          backgroundColor: '#6c757d'
+        }
+      ]
     }).pipe(delay(300)); // simulate API latency
   }
 

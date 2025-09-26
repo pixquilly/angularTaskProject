@@ -9,18 +9,18 @@
       <!-- Clients Chart -->
       <div class="chart-card">
         <h3>Clients</h3>
-        <p-chart 
-          *ngIf="clientsChartData" 
-          type="line" 
-          [data]="clientsChartData" 
-          [options]="chartOptions">
+        <p-chart type="line" [data]="clientsChartData$ | async" [options]="chartOptions">
         </p-chart>
       </div>
 
       <!-- Analytics Chart -->
       <div class="chart-card">
         <h3>Analytics</h3>
-        <p-chart type="bar" [data]="analyticsChartData" [options]="chartOptions"></p-chart>
+        <p-chart 
+          type="bar" 
+          [data]="analyticsChartData$ | async" 
+          [options]="chartOptions">
+      </p-chart>
       </div>
     </div>
 

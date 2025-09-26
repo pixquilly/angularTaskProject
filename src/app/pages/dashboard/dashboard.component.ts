@@ -5,7 +5,7 @@ import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { faker } from '@faker-js/faker';
-import { ChartData, FakeService } from '../../services/faker.service';
+import { AnalyticsChartData, ClientChartData, FakeService } from '../../services/faker.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -28,40 +28,17 @@ export class DashboardComponent{
 
     this.clientsChartData$ = this.fakerService.generateClientsChartData();
 
+    this.analyticsChartData$ = this.fakerService.generateAnalyticsChartData();
+
   }
 
   avatarUrl;
   tasks;
-  clientsChartData$: Observable<ChartData>;
+  clientsChartData$: Observable<ClientChartData>;
 
   language = 'en';
-  
-  clientsChartData!: ChartData;
-  // clientsChartData = {
-  //   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  //   datasets: [{
-  //     label: 'Clients',
-  //     data: [40, 60, 80, 50, 100, 30, 70, 90, 60, 40, 80, 70],
-  //     borderColor: '#1a73e8',
-  //     fill: false
-  //   }]
-  // };
 
-  analyticsChartData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    datasets: [
-      {
-        label: 'Revenue',
-        data: [40, 60, 80, 50, 100, 30, 70, 90, 60, 40, 80, 70],
-        backgroundColor: '#1a73e8'
-      },
-      {
-        label: 'Gross Margin',
-        data: [60, 80, 100, 70, 120, 50, 90, 110, 80, 60, 100, 90],
-        backgroundColor: '#6c757d'
-      }
-    ]
-  };
+  analyticsChartData$: Observable<AnalyticsChartData>;
 
   chartOptions = {
     responsive: true,
@@ -72,6 +49,8 @@ export class DashboardComponent{
       y: { beginAtZero: true }
     }
   };
+
+  
 
   isRouteActive(route: string): boolean {
     return this.router.url === route;
