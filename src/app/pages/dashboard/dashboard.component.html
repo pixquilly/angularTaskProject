@@ -9,7 +9,12 @@
       <!-- Clients Chart -->
       <div class="chart-card">
         <h3>Clients</h3>
-        <p-chart type="line" [data]="clientsChartData" [options]="chartOptions"></p-chart>
+        <p-chart 
+          *ngIf="clientsChartData" 
+          type="line" 
+          [data]="clientsChartData" 
+          [options]="chartOptions">
+        </p-chart>
       </div>
 
       <!-- Analytics Chart -->
@@ -37,7 +42,7 @@
           <tr>
             <td><p-checkbox></p-checkbox></td>
             <td>
-              <img src="https://via.placeholder.com/24" alt="Avatar" class="avatar" />
+              <img [src]="this.avatarUrl" alt="Avatar" class="avatar" />
               {{ task.client }}
             </td>
             <td>{{ task.task }}</td>

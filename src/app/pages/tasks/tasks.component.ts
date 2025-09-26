@@ -4,6 +4,7 @@ import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-tasks',
@@ -54,4 +55,9 @@ export class TasksComponent {
       default: return '';
     }
   }
+
+  constructor(){
+    this.avatarUrl = faker.image.avatar()
+  }
+  avatarUrl;
 }
