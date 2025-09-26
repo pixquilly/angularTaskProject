@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +15,12 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router){
+    this.avatarUrl = faker.image.avatar(); 
+  }
+  
+  avatarUrl;
+
   language = 'EN';
   languages = [
     { label: 'EN', value: 'en' },

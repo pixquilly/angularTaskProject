@@ -27,14 +27,16 @@
     >
       Messages
     </a>
+    
   </div>
 
   <!-- Right Side -->
-  <div class="nav-right">
-    <select [(ngModel)]="language" class="language-select">
-      <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
-    </select>
-    <i class="pi pi-search" style="margin: 0 12px; font-size: 1rem; color: #5f6368;"></i>
-    <img src="https://via.placeholder.com/32" alt="User" class="user-avatar" />
-  </div>
+    <div class="nav-right">
+        <select [(ngModel)]="language">
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+        </select>
+        <i class="pi pi-search" style="margin: 0 12px;"></i>
+        <img [src]="this.avatarUrl" alt="User" class="user-avatar" />
+    </div>  
 </div>
