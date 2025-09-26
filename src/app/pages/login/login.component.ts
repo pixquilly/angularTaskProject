@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../core/models/auth.model';
+import { AUTH_SERVICE } from '../../core/tokens/auth.token';
 import { CommonModule } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
+import { IAuthService } from '../../services/fakeauth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,7 @@ export class LoginComponent {
   });
 
   constructor(
-    private authService: AuthService,
+    @Inject(AUTH_SERVICE) private authService: IAuthService,
     private router: Router
   ) {}
 

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { faker } from '@faker-js/faker';
 import { AuthService } from '../../../services/auth.service';
+import { AUTH_SERVICE } from '../../../core/tokens/auth.token';
+import { IAuthService } from '../../../services/fakeauth.service';
 
 @Component({
   selector: 'app-nav',
@@ -18,7 +20,7 @@ export class NavComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    @Inject(AUTH_SERVICE) private authService: IAuthService,
   ){
     
     this.avatarUrl = faker.image.avatar(); 

@@ -1,23 +1,25 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { of, delay, tap, Observable } from 'rxjs';
 import { AuthResponse, LoginRequest } from '../core/models/auth.model';
-import { environment } from '../../environments/environment';
-import { IAuthService } from './fakeauth.service';
+
+export interface IAuthService {
+  login(credentials: LoginRequest): Observable<AuthResponse>;
+  logout(): void;
+  isLoggedIn: import('@angular/core').Signal<boolean>;
+}
 
 @Injectable()
-export class AuthService implements IAuthService{
+export class FakeAuthService implements IAuthService{
   private readonly TOKEN_KEY = 'auth_token';
   private _isAuthenticated = signal<boolean>(this.hasToken());
   readonly isLoggedIn = this._isAuthenticated.asReadonly();
 
-  constructor(private http: HttpClient) {
-    console.log("using REAL AUTH service.");
-  }
-
   login(credentials: LoginRequest) {
-    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, credentials).pipe(
-      tap((res: AuthResponse) => {
+    const fakeResponse: AuthResponse = { token: `fake-jwt-${Math.random().toString(36).substring(2)}` };
+
+    return of(fakeResponse).pipe(
+      delay(500),
+      tap((res) => {
         localStorage.setItem(this.TOKEN_KEY, res.token);
         this._isAuthenticated.set(true);
       })
@@ -32,5 +34,8 @@ export class AuthService implements IAuthService{
   private hasToken(): boolean {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
-  
+
+  constructor(){
+    console.log("using FAKE AUTH service.");
+  }
 }
