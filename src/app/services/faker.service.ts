@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { delay, Observable, of } from 'rxjs';
+import { TaskStatus } from '../core/models/task-status.enum';
 
 export interface Task {
   client: string;
   task: string;
-  status: 'Draft' | 'In Progress' | 'On Review' | 'Approved';
+  status: TaskStatus;
   receivedOn: string;
 }
 
@@ -38,7 +39,8 @@ export interface AnalyticsChartData {
   providedIn: 'root',
 })
 export class FakeService {
-  private statuses: Task['status'][] = ['Draft', 'In Progress', 'On Review', 'Approved'];
+  
+  private statuses: Task['status'][] = [TaskStatus.Draft, TaskStatus.InProgress, TaskStatus.OnReview, TaskStatus.Approved];
 
   generateTasks(count: number = 5): Task[] {
   return Array.from({ length: count }).map(() => ({
