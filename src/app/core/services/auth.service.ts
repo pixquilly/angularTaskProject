@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { AuthResponse, LoginRequest } from '../interfaces/auth.interface';
 import { environment } from '../../../environments/environment';
-import { IAuthService } from './fakeauth.service';
+import { IAuthService } from '../interfaces/auth-service.interface';
 
 @Injectable()
 export class AuthService implements IAuthService{

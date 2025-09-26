@@ -1,7 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { of, delay, tap, Observable } from 'rxjs';
-import { AuthResponse, LoginRequest } from '../interfaces/auth.interface';
-import { IAuthService } from '../interfaces/auth-service.interface';
+import { IAuthService } from '../core/interfaces/auth-service.interface';
+import { AuthResponse, LoginRequest } from '../core/interfaces/auth.interface';
+
 
 @Injectable()
 export class FakeAuthService implements IAuthService{

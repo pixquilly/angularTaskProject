@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
-import { faker } from '@faker-js/faker';
 import { FakeService } from '../../core/services/faker.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -12,16 +11,17 @@ import { AnalyticsChartData, ClientChartData } from '../../core/interfaces/chart
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  templateUrl: './dashboard-main.component.html',
   imports: [
     FormsModule,
     ChartModule,
     TableModule,
     CheckboxModule,
-    AsyncPipe
+    AsyncPipe,
+    RouterOutlet
   ]
 })
-export class DashboardComponent{
+export class DashboardMainComponent{
 
   constructor(private router: Router, private fakerService: FakeService) {
     
@@ -52,8 +52,6 @@ export class DashboardComponent{
     }
   };
 
-  
-
   isRouteActive(route: string): boolean {
     return this.router.url === route;
   }
@@ -67,6 +65,5 @@ export class DashboardComponent{
       default: return '';
     }
   }
-
   
 }

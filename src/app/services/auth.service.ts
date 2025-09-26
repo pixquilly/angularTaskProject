@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
-import { AuthResponse, LoginRequest } from '../interfaces/auth.interface';
-import { environment } from '../../../environments/environment';
-import { IAuthService } from './fakeauth.service';
+import { IAuthService } from '../core/interfaces/auth-service.interface';
+import { AuthResponse, LoginRequest } from '../core/interfaces/auth.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService implements IAuthService{
@@ -32,5 +32,5 @@ export class AuthService implements IAuthService{
   private hasToken(): boolean {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
-  
+
 }

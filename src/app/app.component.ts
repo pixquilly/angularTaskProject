@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { DashboardComponent } from "./pages/dashboard/dashboard.component";
-import { TasksComponent } from "./pages/tasks/tasks.component";
-import { HeaderComponent } from "./pages/components/header/header.component";
+import { LoginComponent } from './features/login/login.component';
+import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import { TasksComponent } from "./features/tasks/tasks.component";
+import { HeaderComponent } from './shared/header/header.component';
 
 @Component({
   selector: 'app-root',

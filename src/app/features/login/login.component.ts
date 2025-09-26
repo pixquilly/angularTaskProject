@@ -8,7 +8,7 @@ import { LoginRequest } from '../../core/interfaces/auth.interface';
 import { AUTH_SERVICE } from '../../core/tokens/auth.token';
 import { CommonModule } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
-import { IAuthService } from '../../core/services/fakeauth.service';
+import { IAuthService } from '../../core/interfaces/auth-service.interface';
 
 @Component({
   selector: 'app-login',

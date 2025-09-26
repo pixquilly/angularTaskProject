@@ -2,9 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { faker } from '@faker-js/faker';
-import { AuthService } from '../../../core/services/auth.service';
-import { AUTH_SERVICE } from '../../../core/tokens/auth.token';
-import { IAuthService } from '../../../core/services/fakeauth.service';
+import { AUTH_SERVICE } from '../../core/tokens/auth.token';
+import { IAuthService } from '../../core/interfaces/auth-service.interface';
 
 @Component({
   selector: 'app-nav',
@@ -27,6 +26,7 @@ export class NavComponent {
   }
   
   avatarUrl;
+  logoUrl: string = "src/assets/logo.png";
 
   language = 'EN';
   languages = [
