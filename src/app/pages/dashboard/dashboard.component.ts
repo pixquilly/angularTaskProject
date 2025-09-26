@@ -5,9 +5,10 @@ import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { faker } from '@faker-js/faker';
-import { AnalyticsChartData, ClientChartData, FakeService } from '../../services/faker.service';
+import { FakeService } from '../../core/services/faker.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { AnalyticsChartData, ClientChartData } from '../../core/interfaces/chart.interface';
 
 @Component({
   selector: 'app-dashboard',

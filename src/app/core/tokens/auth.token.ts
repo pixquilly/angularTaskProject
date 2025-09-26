@@ -1,5 +1,5 @@
 // src/app/core/tokens/auth.token.ts
 import { InjectionToken } from '@angular/core';
-import { IAuthService } from '../../services/fakeauth.service';
+import { AuthService } from '../services/auth.service';
 
-export const AUTH_SERVICE = new InjectionToken<IAuthService>('AuthService');
+export const AUTH_SERVICE = new InjectionToken<AuthService>('AuthService');

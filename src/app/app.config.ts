@@ -6,8 +6,8 @@ import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeuix/themes/aura';
-import { AuthService } from './services/auth.service';
-import { FakeAuthService, IAuthService } from './services/fakeauth.service';
+import { AuthService } from './core/services/auth.service';
+import { FakeAuthService, IAuthService } from './core/services/fakeauth.service';
 import { AUTH_SERVICE } from './core/tokens/auth.token';
 
 export const appConfig: ApplicationConfig = {

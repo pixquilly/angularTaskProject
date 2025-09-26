@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { LoginRequest } from '../../core/models/auth.model';
+import { LoginRequest } from '../../core/interfaces/auth.interface';
 import { AUTH_SERVICE } from '../../core/tokens/auth.token';
 import { CommonModule } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
-import { IAuthService } from '../../services/fakeauth.service';
+import { IAuthService } from '../../core/services/fakeauth.service';
 
 @Component({
   selector: 'app-login',
