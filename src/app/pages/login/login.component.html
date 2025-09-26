@@ -33,7 +33,9 @@
 
       <div class="options">
         <div class="remember">
-          <p-checkbox formControlName="rememberMe" binary="true"></p-checkbox>
+          <!-- <p-checkbox formControlName="rememberMe" binary="true"></p-checkbox> -->
+          <p-checkbox formControlName="rememberMe" [binary]="true"></p-checkbox>
+
           <label>Remember Me</label>
         </div>
         <a href="#" class="forgot">Forget Password ?</a>

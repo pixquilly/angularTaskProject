@@ -1,0 +1,108 @@
+<div class="tasks-container">
+  <!-- Header (reuses dashboard header) -->
+  <div class="app-header">
+    <div class="logo">
+      <i class="pi pi-lock" style="font-size: 1.5rem; color: #1a73e8;"></i>
+    </div>
+    <div class="nav">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/tasks" [class.active]="true">Tasks</a>
+      <a routerLink="/messages">Messages</a>
+    </div>
+    <div class="header-right">
+      <select [(ngModel)]="language">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+      </select>
+      <i class="pi pi-search" style="margin: 0 12px;"></i>
+      <img src="https://via.placeholder.com/32" alt="User" class="user-avatar" />
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Overview</h2>
+
+    <!-- Cards Row -->
+    <div class="cards-row">
+      <div class="card" *ngFor="let card of overviewCards">
+        <span class="status-badge" [class]="card.statusClass">{{ card.status }}</span>
+        <div class="card-value">{{ card.value }}</div>
+        <div class="card-label">{{ card.label }}</div>
+        <div class="card-icons">
+          <i class="pi pi-users" style="font-size: 0.8rem; margin-right: 4px;"></i>
+          <i class="pi pi-user" style="font-size: 0.8rem; margin-right: 4px;"></i>
+          <i class="pi pi-at" style="font-size: 0.8rem; margin-right: 4px;"></i>
+          <i class="pi pi-link" style="font-size: 0.8rem; margin-right: 4px;"></i>
+          <i class="pi pi-inbox" style="font-size: 0.8rem;"></i>
+        </div>
+      </div>
+    </div>
+
+    <h2>Tasks</h2>
+
+    <!-- Filters -->
+    <div class="filters">
+      <p-dropdown
+        [options]="statusOptions"
+        placeholder="Status"
+        [(ngModel)]="selectedStatus"
+        styleClass="filter-dropdown"
+      ></p-dropdown>
+      <p-dropdown
+        [options]="taskNameOptions"
+        placeholder="Task Name"
+        [(ngModel)]="selectedTaskName"
+        styleClass="filter-dropdown"
+      ></p-dropdown>
+      <button class="clear-btn">Clear</button>
+      <button class="apply-btn">Apply</button>
+      <div class="sort-section">
+        <p-dropdown
+          [options]="sortOptions"
+          placeholder="Sort by"
+          [(ngModel)]="selectedSort"
+          styleClass="sort-dropdown"
+        ></p-dropdown>
+        <p-dropdown
+          [options]="perPageOptions"
+          placeholder="5"
+          [(ngModel)]="selectedPerPage"
+          styleClass="per-page-dropdown"
+        ></p-dropdown>
+      </div>
+    </div>
+
+    <!-- Tasks Table -->
+    <p-table [value]="tasks" [paginator]="true" [rows]="5" [totalRecords]="20">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3%"></th>
+          <th>Client</th>
+          <th>Task</th>
+          <th>Status</th>
+          <th>Received on</th>
+          <th>More</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-task>
+        <tr>
+          <td><p-checkbox></p-checkbox></td>
+          <td>
+            <img src="https://via.placeholder.com/24" alt="Avatar" class="avatar" />
+            {{ task.client }}
+          </td>
+          <td>{{ task.task }}</td>
+          <td>
+            <span [class]="getStatusClass(task.status)">{{ task.status }}</span>
+          </td>
+          <td>{{ task.receivedOn }}</td>
+          <td><i class="pi pi-ellipsis-v"></i></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <span>Showing 1 to {{ tasks.length }} of 20 results</span>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

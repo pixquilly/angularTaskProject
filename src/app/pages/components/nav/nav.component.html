@@ -1,0 +1,40 @@
+<div class="nav-container">
+  <!-- Logo -->
+  <div class="logo">
+    <i class="pi pi-lock" style="font-size: 1.5rem; color: #1a73e8;"></i>
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="nav-links">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      [attr.aria-current]="isActive('/dashboard') ? 'page' : null"
+    >
+      Dashboard
+    </a>
+    <a
+      routerLink="/tasks"
+      routerLinkActive="active"
+      [attr.aria-current]="isActive('/tasks') ? 'page' : null"
+    >
+      Tasks
+    </a>
+    <a
+      routerLink="/messages"
+      routerLinkActive="active"
+      [attr.aria-current]="isActive('/messages') ? 'page' : null"
+    >
+      Messages
+    </a>
+  </div>
+
+  <!-- Right Side -->
+  <div class="nav-right">
+    <select [(ngModel)]="language" class="language-select">
+      <option *ngFor="let lang of languages" [value]="lang.value">{{ lang.label }}</option>
+    </select>
+    <i class="pi pi-search" style="margin: 0 12px; font-size: 1rem; color: #5f6368;"></i>
+    <img src="https://via.placeholder.com/32" alt="User" class="user-avatar" />
+  </div>
+</div>
