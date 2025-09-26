@@ -23,7 +23,8 @@ import { AsyncPipe } from '@angular/common';
 export class DashboardComponent{
 
   constructor(private router: Router, private fakerService: FakeService) {
-    this.avatarUrl = faker.image.avatar(); 
+    
+    this.avatarUrls = this.fakerService.generateUserAvatars(100);
     this.tasks = this.fakerService.generateTasks(100);
 
     this.clientsChartData$ = this.fakerService.generateClientsChartData();
@@ -32,7 +33,7 @@ export class DashboardComponent{
 
   }
 
-  avatarUrl;
+  avatarUrls: string[];
   tasks;
   clientsChartData$: Observable<ClientChartData>;
 

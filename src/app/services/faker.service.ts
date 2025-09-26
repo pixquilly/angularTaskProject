@@ -41,22 +41,22 @@ export class FakeService {
   private statuses: Task['status'][] = ['Draft', 'In Progress', 'On Review', 'Approved'];
 
   generateTasks(count: number = 5): Task[] {
-    return Array.from({ length: count }).map(() => {
-      return {
-        client: faker.person.fullName(),
-        task: faker.lorem.words(faker.number.int({ min: 2, max: 4 })),
-        status: faker.helpers.arrayElement(this.statuses),
-        receivedOn: faker.date.recent({days: 30}).toLocaleString('en-GB', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true,
-        }),
-      };
-    });
-  }
+  return Array.from({ length: count }).map(() => ({
+    client: faker.person.fullName(),
+    task: faker.lorem.words(faker.number.int({ min: 2, max: 4 })),
+    status: faker.helpers.arrayElement(this.statuses),
+    receivedOn: faker.date.recent({ days: 30 }).toLocaleString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }),
+    avatar: this.generateUserAvatar()
+  }));
+}
+
 
   generateClientsChartData(): Observable<ClientChartData> {
     const months = [
@@ -112,5 +112,11 @@ export class FakeService {
     }).pipe(delay(300)); // simulate API latency
   }
 
-  
+  generateUserAvatar(): string{
+    return faker.image.avatar();
+  }
+
+  generateUserAvatars(count: number = 5): string[] {
+    return Array.from({ length: count }).map(() => this.generateUserAvatar());
+  }
 }

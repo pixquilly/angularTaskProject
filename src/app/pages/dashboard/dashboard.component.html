@@ -38,11 +38,11 @@
             <th>More</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-task>
+        <ng-template pTemplate="body" let-task let-i="index">
           <tr>
             <td><p-checkbox></p-checkbox></td>
             <td>
-              <img [src]="this.avatarUrl" alt="Avatar" class="avatar" />
+              <img [src]="task.avatar" alt="Avatar" class="avatar" />
               {{ task.client }}
             </td>
             <td>{{ task.task }}</td>
