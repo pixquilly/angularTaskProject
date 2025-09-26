@@ -1,37 +1,42 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../core/models/auth.model';
+import { CommonModule } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-login',
+  templateUrl: './login.component.html',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
-    ButtonModule,
     InputTextModule,
     PasswordModule,
+    ButtonModule,
+    CommonModule,
+    ReactiveFormsModule,
     CheckboxModule
-  ],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  ]
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberMe: [false] // ✅ now part of form
-    });
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit() {
     if (this.loginForm.invalid) return;
-    console.log('Login:', this.loginForm.value);
+    this.authService.login(this.loginForm.value as LoginRequest).subscribe(() => {
+      this.router.navigate(['/dashboard']);
+    });
   }
 }

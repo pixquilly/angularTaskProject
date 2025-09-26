@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { faker } from '@faker-js/faker';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +16,11 @@ import { faker } from '@faker-js/faker';
 })
 export class NavComponent {
 
-  constructor(private router: Router){
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ){
+    
     this.avatarUrl = faker.image.avatar(); 
   }
   
@@ -29,5 +34,10 @@ export class NavComponent {
 
   isActive(route: string): boolean {
     return this.router.url === route;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
