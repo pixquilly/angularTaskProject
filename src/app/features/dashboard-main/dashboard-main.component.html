@@ -54,9 +54,9 @@
                         <td>
                             <p-checkbox [binary]="true"></p-checkbox>
                         </td>
-                        <td class="flex align-items-center gap-2">
-                            <p-avatar [image]="task.avatar" shape="circle"></p-avatar>
-                            <span>{{ task.client }}</span>
+                        <td>
+                            <img [src]="task.avatar" alt="Avatar" class="avatar" />
+                            {{ task.client }}
                         </td>
                         <td>{{ task.task }}</td>
                         <td>
