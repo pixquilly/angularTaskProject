@@ -1,4 +1,3 @@
-// src/app/core/tokens/auth.token.ts
 import { InjectionToken } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 

@@ -9,7 +9,10 @@ import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { Task } from '../../core/interfaces/task.interface';
+import { OverviewCard } from '../../core/interfaces/overview-card.interface';
 import { FakeService } from '../../core/services/faker.service';
+import { TaskStatus } from '../../core/enums/task-status.enum';
+import { StatusOptions } from '../../core/interfaces/status-options.interface';
 
 @Component({
   selector: 'app-tasks',
@@ -35,28 +38,47 @@ export class TasksComponent {
 
   tasks: Task[] = [];
 
-  constructor(private fakeService: FakeService){
+  constructor(private fakeService: FakeService) {
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.fakeService.tasks$.subscribe(tasks => {
       this.tasks = tasks;
     });
+
+    this.taskNameOptions = [
+      { label: 'All', value: '' },
+      ...this.tasks
+        .map(task => ({ label: task.task, value: task.task }))
+        .filter((option, index, self) =>
+          index === self.findIndex(o => o.value === option.value)
+        )
+    ];
+
+    this.statusOptions = [
+      { label: 'All', value: '' },
+      ...this.tasks
+        .map(task => ({ label: task.status, value: task.status }))
+        .filter((option, index, self) =>
+          index === self.findIndex(o => o.value === option.value)
+        )
+    ];
+
   }
-  overviewCards = [
-    { status: 'In Progress', statusClass: 'status-in-progress', value: '300', label: 'Super Admin Role' },
-    { status: 'Draft', statusClass: 'status-draft', value: '104', label: 'Client Role' },
-    { status: 'On Review', statusClass: 'status-on-review', value: '200', label: 'Super Admin Role' },
-    { status: 'Approved', statusClass: 'status-approved', value: '30', label: 'Super Admin Role' },
-    { status: 'Rejected', statusClass: 'status-rejected', value: '800', label: 'Super Admin Role' }
+  overviewCards: OverviewCard[] = [
+    { status: TaskStatus.InProgress, statusClass: 'status-in-progress', value: '300', label: 'Super Admin Role' },
+    { status: TaskStatus.Draft, statusClass: 'status-draft', value: '104', label: 'Client Role' },
+    { status: TaskStatus.OnReview, statusClass: 'status-on-review', value: '200', label: 'Super Admin Role' },
+    { status: TaskStatus.Approved, statusClass: 'status-approved', value: '30', label: 'Super Admin Role' },
+    { status: TaskStatus.Rejected, statusClass: 'status-rejected', value: '800', label: 'Super Admin Role' }
   ];
 
-  statusOptions = [{ label: 'All', value: '' }, { label: 'In Progress', value: 'in-progress' }];
-  taskNameOptions = [{ label: 'All', value: '' }, { label: 'Garden Design', value: 'garden' }];
+  statusOptions: StatusOptions[] = [];
+  taskNameOptions!: { label: string, value: string }[];
   sortOptions = [{ label: 'Date Asc', value: 'asc' }, { label: 'Date Desc', value: 'desc' }];
   perPageOptions = [{ label: '5', value: '5' }, { label: '10', value: '10' }];
 
-  
+
 
   getStatusClass(status: string): string {
     switch (status) {
@@ -68,5 +90,5 @@ export class TasksComponent {
       default: return '';
     }
   }
-  
+
 }

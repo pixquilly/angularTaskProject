@@ -60,7 +60,7 @@
                         </td>
                         <td>{{ task.task }}</td>
                         <td>
-                            <p-tag [value]="task.status" [severity]="getStatusClass(task.status)"></p-tag>
+                            <span [class]="getStatusClass(task.status)">{{ task.status }}</span>
                         </td>
                         <td>{{ task.receivedOn }}</td>
                         <td>

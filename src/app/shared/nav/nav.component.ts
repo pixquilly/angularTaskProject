@@ -25,10 +25,10 @@ export class NavComponent {
     this.avatarUrl = faker.image.avatar(); 
   }
   
-  avatarUrl;
-  logoUrl: string = "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg";
+  avatarUrl: string;
+  logoUrl: string = "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"; //for some reason I could not import the logo neither from public or asset folders.
 
-  language = 'EN';
+  language = 'en';
   languages = [
     { label: 'EN', value: 'en' },
     { label: 'ES', value: 'es' }
