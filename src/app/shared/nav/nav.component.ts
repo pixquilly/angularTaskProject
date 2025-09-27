@@ -4,6 +4,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { faker } from '@faker-js/faker';
 import { AUTH_SERVICE } from '../../core/tokens/auth.token';
 import { IAuthService } from '../../core/interfaces/auth-service.interface';
+import { MenuItem } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
 
 @Component({
   selector: 'app-nav',
@@ -12,16 +14,25 @@ import { IAuthService } from '../../core/interfaces/auth-service.interface';
   imports: [
     RouterLink, 
     RouterLinkActive,
-    FormsModule
+    FormsModule,
+    MenuModule
   ]
 })
 export class NavComponent {
+
+  profileItems: MenuItem[];
 
   constructor(
     private router: Router,
     @Inject(AUTH_SERVICE) private authService: IAuthService,
   ){
-    
+    this.profileItems = [
+      {
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+        command: () => this.logout()
+      }
+    ];
     this.avatarUrl = faker.image.avatar(); 
   }
   

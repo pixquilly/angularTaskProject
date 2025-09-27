@@ -1,41 +1,36 @@
 <div class="nav-container">
-    <div class="logo">
-      <img [src]="logoUrl" alt="Logo" class="logo-img"/>
-    </div>
+  <div class="logo">
+    <img [src]="logoUrl" alt="Logo" class="logo-img" />
+  </div>
 
   <!-- Navigation Links -->
   <div class="nav-links">
-    <a
-      routerLink="/dashboard"
-      routerLinkActive="active"
-      [attr.aria-current]="isActive('/dashboard') ? 'page' : null"
-    >
+    <a routerLink="/dashboard" routerLinkActive="active" [attr.aria-current]="isActive('/dashboard') ? 'page' : null">
       Dashboard
     </a>
-    <a
-      routerLink="/dashboard/tasks"
-      routerLinkActive="active"
-      [attr.aria-current]="isActive('/dashboard/tasks') ? 'page' : null"
-    >
+    <a routerLink="/dashboard/tasks" routerLinkActive="active"
+      [attr.aria-current]="isActive('/dashboard/tasks') ? 'page' : null">
       Tasks
     </a>
-    <a
-      routerLink="/messages"
-      routerLinkActive="active"
-      [attr.aria-current]="isActive('/messages') ? 'page' : null"
-    >
+    <a routerLink="/messages" routerLinkActive="active" [attr.aria-current]="isActive('/messages') ? 'page' : null">
       Messages
     </a>
-    
+
   </div>
 
-  <!-- Right Side -->
-    <div class="nav-right">
-        <select [(ngModel)]="language">
-            <option value="en">EN</option>
-            <option value="es">ES</option>
-        </select>
-        <i class="pi pi-search" style="margin: 0 12px;"></i>
-        <img [src]="this.avatarUrl" alt="User" class="user-avatar" />
-    </div>  
+  <div class="nav-right">
+  <select [(ngModel)]="language">
+    <option value="en">EN</option>
+    <option value="es">ES</option>
+  </select>
+
+  <p-menu #profileMenu [popup]="true" [model]="profileItems"></p-menu>
+
+  <img
+    src="{{ avatarUrl }}"
+    alt="User"
+    class="user-avatar clickable"
+    (click)="profileMenu.toggle($event)"
+  />
+</div>
 </div>

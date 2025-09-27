@@ -102,5 +102,5 @@ Open your browser at `http://localhost:4200`.
 Due to time constraints, not all requirements could be fully implemented.
 Development priorities were set to focus on the core features and deliver a functional MVP.
 
-**Development Duration:** The project was completed over three days, rather than the initially planned five days.
+**Development Duration:** The project was completed over three days, rather than the initially planned five days because of previously mentioned time constraints.
 With additional time, a more comprehensive and refined implementation could have been delivered.
