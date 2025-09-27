@@ -4,11 +4,12 @@ import { TableModule } from 'primeng/table';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { faker } from '@faker-js/faker';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
+import { Task } from '../../core/interfaces/task.interface';
+import { FakeService } from '../../core/services/faker.service';
 
 @Component({
   selector: 'app-tasks',
@@ -32,6 +33,16 @@ export class TasksComponent {
   selectedSort = '';
   selectedPerPage = '5';
 
+  tasks: Task[] = [];
+
+  constructor(private fakeService: FakeService){
+  }
+
+  ngOnInit(): void{
+    this.fakeService.tasks$.subscribe(tasks => {
+      this.tasks = tasks;
+    });
+  }
   overviewCards = [
     { status: 'In Progress', statusClass: 'status-in-progress', value: '300', label: 'Super Admin Role' },
     { status: 'Draft', statusClass: 'status-draft', value: '104', label: 'Client Role' },
@@ -45,13 +56,7 @@ export class TasksComponent {
   sortOptions = [{ label: 'Date Asc', value: 'asc' }, { label: 'Date Desc', value: 'desc' }];
   perPageOptions = [{ label: '5', value: '5' }, { label: '10', value: '10' }];
 
-  tasks = [
-    { client: 'Maram Alqadri', task: 'Garden Design', status: 'Draft', receivedOn: '02-02-2025 : 00:48 PM' },
-    { client: 'Ahmed Rawy', task: 'Flora Studio', status: 'In Progress', receivedOn: '02-02-2025 : 00:48 PM' },
-    { client: 'Ali Yahia', task: 'Testing Design', status: 'On Review', receivedOn: '02-02-2025 : 00:48 PM' },
-    { client: 'Mohamed Ammar', task: 'Commerce Platform', status: 'Approved', receivedOn: '02-02-2025 : 00:48 PM' },
-    { client: 'Sara Adel', task: 'Shopping Platform', status: 'Rejected', receivedOn: '02-02-2025 : 00:48 PM' }
-  ];
+  
 
   getStatusClass(status: string): string {
     switch (status) {
@@ -63,9 +68,5 @@ export class TasksComponent {
       default: return '';
     }
   }
-
-  constructor(){
-    this.avatarUrl = faker.image.avatar()
-  }
-  avatarUrl;
+  
 }

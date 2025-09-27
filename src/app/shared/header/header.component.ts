@@ -3,7 +3,7 @@ import { NavComponent } from '../nav/nav.component';
 import { BaseIcon } from "primeng/baseicon";
 import { CommonModule } from '@angular/common';
 import { AUTH_SERVICE } from '../../core/tokens/auth.token';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 
 @Component({

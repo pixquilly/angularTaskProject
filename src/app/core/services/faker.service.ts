@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
-import { delay, Observable, of } from 'rxjs';
+import { BehaviorSubject, delay, Observable, of } from 'rxjs';
 import { TaskStatus } from '../enums/task-status.enum';
 import { Task } from '../interfaces/task.interface';
 import { AnalyticsChartData, ClientChartData } from '../interfaces/chart.interface';
@@ -10,24 +10,33 @@ import { AnalyticsChartData, ClientChartData } from '../interfaces/chart.interfa
 })
 export class FakeService {
   
-  private statuses: Task['status'][] = [TaskStatus.Draft, TaskStatus.InProgress, TaskStatus.OnReview, TaskStatus.Approved];
+  private tasksSubject = new BehaviorSubject<Task[]>([]);
+  public tasks$ = this.tasksSubject.asObservable();
 
-  generateTasks(count: number = 5): Task[] {
-  return Array.from({ length: count }).map(() => ({
-    client: faker.person.fullName(),
-    task: faker.lorem.words(faker.number.int({ min: 2, max: 4 })),
-    status: faker.helpers.arrayElement(this.statuses),
-    receivedOn: faker.date.recent({ days: 30 }).toLocaleString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    }),
-    avatar: this.generateUserAvatar()
-  }));
-}
+  private statuses = Object.values(TaskStatus);
+
+  constructor(){
+    this.generateTasks(100);
+  }
+
+  private generateTasks(count: number = 5): void {
+    const tasks: Task[] = Array.from({ length: count }).map(() => ({
+      client: faker.person.fullName(),
+      task: faker.lorem.words(faker.number.int({ min: 2, max: 4 })),
+      status: faker.helpers.arrayElement(this.statuses) as TaskStatus,
+      receivedOn: faker.date.recent({ days: 30 }).toLocaleString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      }),
+      avatar: this.generateUserAvatar()
+    }));
+
+    this.tasksSubject.next(tasks); // emit the tasks
+  }
 
   generateClientsChartData(): Observable<ClientChartData> {
     const months = [

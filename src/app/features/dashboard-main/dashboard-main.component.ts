@@ -12,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
+import { TaskStatus } from '../../core/enums/task-status.enum';
+import { Task } from '../../core/interfaces/task.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,24 +38,24 @@ import { TagModule } from 'primeng/tag';
 })
 export class DashboardMainComponent{
 
-  constructor(private router: Router, private fakerService: FakeService) {
-    
-    this.avatarUrls = this.fakerService.generateUserAvatars(100);
-    this.tasks = this.fakerService.generateTasks(100);
+  constructor(private router: Router, private fakeService: FakeService) {}
 
-    this.clientsChartData$ = this.fakerService.generateClientsChartData();
+  tasks: Task[] = [];
+  clientsChartData$!: Observable<ClientChartData>;
+  analyticsChartData$!: Observable<AnalyticsChartData>;
 
-    this.analyticsChartData$ = this.fakerService.generateAnalyticsChartData();
+  ngOnInit(): void {
+
+    this.clientsChartData$ = this.fakeService.generateClientsChartData();
+    this.analyticsChartData$ = this.fakeService.generateAnalyticsChartData();
+
+    this.fakeService.tasks$.subscribe(tasks => {
+      this.tasks = tasks;
+    });
 
   }
 
-  avatarUrls: string[];
-  tasks;
-  clientsChartData$: Observable<ClientChartData>;
-
   language = 'en';
-
-  analyticsChartData$: Observable<AnalyticsChartData>;
 
   chartOptions = {
     responsive: true,
@@ -69,13 +71,20 @@ export class DashboardMainComponent{
     return this.router.url === route;
   }
 
-  getStatusClass(status: string): string {
+  getStatusClass(status: TaskStatus): string {
     switch (status) {
-      case 'Draft': return 'status-draft';
-      case 'In Progress': return 'status-in-progress';
-      case 'On Review': return 'status-on-review';
-      case 'Approved': return 'status-approved';
-      default: return '';
+      case TaskStatus.Draft:
+        return 'status-draft';
+      case TaskStatus.InProgress:
+        return 'status-in-progress';
+      case TaskStatus.OnReview:
+        return 'status-on-review';
+      case TaskStatus.Approved:
+        return 'status-approved';
+      case TaskStatus.Rejected:
+        return 'status-rejected';
+      default:
+        return '';
     }
   }
   
