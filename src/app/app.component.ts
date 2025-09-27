@@ -9,9 +9,6 @@ import { HeaderComponent } from './shared/header/header.component';
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    LoginComponent,
-    DashboardComponent,
-    TasksComponent,
     HeaderComponent
 ],
   templateUrl: './app.component.html',

@@ -5,6 +5,10 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { faker } from '@faker-js/faker';
+import { ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
+import { TagModule } from 'primeng/tag';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-tasks',
@@ -14,7 +18,11 @@ import { faker } from '@faker-js/faker';
     FormsModule,
     DropdownModule,
     TableModule,
-    CheckboxModule
+    CheckboxModule,
+    ButtonModule,
+    AvatarModule,
+    TagModule,
+    CardModule
   ]
 })
 export class TasksComponent {

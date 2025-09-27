@@ -6,8 +6,12 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { FakeService } from '../../core/services/faker.service';
 import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { AnalyticsChartData, ClientChartData } from '../../core/interfaces/chart.interface';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { AvatarModule } from 'primeng/avatar';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +22,16 @@ import { AnalyticsChartData, ClientChartData } from '../../core/interfaces/chart
     TableModule,
     CheckboxModule,
     AsyncPipe,
-    RouterOutlet
+    RouterOutlet,
+    CommonModule,
+    ChartModule,
+    TableModule,
+    ChartModule,
+    CheckboxModule,
+    AvatarModule,
+    TagModule,
+    ButtonModule,
+    CardModule
   ]
 })
 export class DashboardMainComponent{

@@ -1,33 +1,53 @@
-<div class="dashboard-container">
+<p-card class="dashboard-container">
 
-  <!-- Main Content -->
-  <div class="main-content">
+  <!-- Page Header -->
+  <ng-template pTemplate="header">
     <h2>Dashboard</h2>
+  </ng-template>
 
-    <!-- Charts Row -->
-    <div class="charts-row">
-      <!-- Clients Chart -->
-      <div class="chart-card">
-        <h3>Clients</h3>
-        <p-chart type="line" [data]="clientsChartData$ | async" [options]="chartOptions">
-        </p-chart>
-      </div>
+  <!-- Charts Row -->
+  <div class="p-grid charts-row">
 
-      <!-- Analytics Chart -->
-      <div class="chart-card">
-        <h3>Analytics</h3>
-        <p-chart 
-          type="bar" 
-          [data]="analyticsChartData$ | async" 
+    <!-- Clients Chart -->
+    <div class="p-col-12 p-md-6">
+      <p-card>
+        <ng-template pTemplate="header">
+          <h3>Clients</h3>
+        </ng-template>
+        <p-chart
+          type="line"
+          [data]="clientsChartData$ | async"
           [options]="chartOptions">
-      </p-chart>
-      </div>
+        </p-chart>
+      </p-card>
     </div>
 
-    <!-- Recently Task Table -->
-    <div class="table-section">
-      <h3>Recently Task</h3>
-      <p-table [value]="tasks" [paginator]="true" [rows]="5">
+    <!-- Analytics Chart -->
+    <div class="p-col-12 p-md-6">
+      <p-card>
+        <ng-template pTemplate="header">
+          <h3>Analytics</h3>
+        </ng-template>
+        <p-chart
+          type="bar"
+          [data]="analyticsChartData$ | async"
+          [options]="chartOptions">
+        </p-chart>
+      </p-card>
+    </div>
+
+  </div>
+
+  <!-- Recently Task Table -->
+  <div class="table-section">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3>Recently Task</h3>
+      </ng-template>
+
+      <p-table [value]="tasks" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+        
+        <!-- Table Header -->
         <ng-template pTemplate="header">
           <tr>
             <th style="width: 3%"></th>
@@ -38,22 +58,30 @@
             <th>More</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-task let-i="index">
+
+        <!-- Table Body -->
+        <ng-template pTemplate="body" let-task>
           <tr>
-            <td><p-checkbox></p-checkbox></td>
             <td>
-              <img [src]="task.avatar" alt="Avatar" class="avatar" />
-              {{ task.client }}
+              <p-checkbox [binary]="true"></p-checkbox>
+            </td>
+            <td class="flex align-items-center gap-2">
+              <p-avatar [image]="task.avatar" shape="circle"></p-avatar>
+              <span>{{ task.client }}</span>
             </td>
             <td>{{ task.task }}</td>
             <td>
-              <span [class]="getStatusClass(task.status)">{{ task.status }}</span>
+              <p-tag [value]="task.status" [severity]="getStatusClass(task.status)"></p-tag>
             </td>
             <td>{{ task.receivedOn }}</td>
-            <td><i class="pi pi-ellipsis-v"></i></td>
+            <td>
+              <p-button icon="pi pi-ellipsis-v" styleClass="p-button-text p-button-rounded"></p-button>
+            </td>
           </tr>
         </ng-template>
+
       </p-table>
-    </div>
+    </p-card>
   </div>
-</div>
+
+</p-card>

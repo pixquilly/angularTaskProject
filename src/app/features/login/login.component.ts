@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { LoginRequest } from '../../core/interfaces/auth.interface';
+import { LoginUser } from '../../core/interfaces/auth.interface';
 import { AUTH_SERVICE } from '../../core/tokens/auth.token';
 import { CommonModule } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -40,7 +40,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) return;
-    this.authService.login(this.loginForm.value as LoginRequest).subscribe(() => {
+    this.authService.login(this.loginForm.value as LoginUser).subscribe(() => {
       this.router.navigate(['/dashboard']);
     });
   }

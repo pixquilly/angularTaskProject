@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { IAuthService } from '../core/interfaces/auth-service.interface';
-import { AuthResponse, LoginRequest } from '../core/interfaces/auth.interface';
+import { AuthResponse, LoginUser } from '../core/interfaces/auth.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class AuthService implements IAuthService{
     console.log("using REAL AUTH service.");
   }
 
-  login(credentials: LoginRequest) {
+  login(credentials: LoginUser) {
     return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, credentials).pipe(
       tap((res: AuthResponse) => {
         localStorage.setItem(this.TOKEN_KEY, res.token);

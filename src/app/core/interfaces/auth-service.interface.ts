@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { AuthResponse, LoginRequest } from './auth.interface';
+import { AuthResponse, LoginUser } from './auth.interface';
 
 export interface IAuthService {
-  login(credentials: LoginRequest): Observable<AuthResponse>;
+  login(credentials: LoginUser): Observable<AuthResponse>;
   logout(): void;
   isLoggedIn: import('@angular/core').Signal<boolean>;
 }

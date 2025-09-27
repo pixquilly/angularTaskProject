@@ -11,19 +11,49 @@
     padding: $spacing-xl;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
 
-    .logo { text-align: center; margin-bottom: $spacing-md; }
-    h2 { margin-bottom: $spacing-xs; font-size: 1.5rem; color: $text-color; }
-    .subtitle { margin-bottom: $spacing-lg; color: #5f6368; font-size: 0.9rem; }
+    .logo {
+      text-align: center;
+      margin-bottom: $spacing-md;
+      max-width: 150px;
+      display: hidden;
+    }
+
+    h2 {
+      margin-bottom: $spacing-xs;
+      font-size: 1.5rem;
+      color: $text-color;
+    }
+
+    .subtitle {
+      margin-bottom: $spacing-lg;
+      color: #5f6368;
+      font-size: 0.9rem;
+    }
 
     .field {
       margin-bottom: $spacing-md;
-      label { display: block; margin-bottom: $spacing-xs; font-weight: 500; }
-      .p-inputtext, .p-password { width: 100%; }
-      .hint { display: block; margin-top: $spacing-xs; color: #5f6368; font-size: 0.8rem; }
+
+      label {
+        display: block;
+        margin-bottom: $spacing-xs;
+        font-weight: 500;
+      }
+
+      .p-inputtext,
+      .p-password {
+        width: 100%;
+      }
+
+      .hint {
+        display: block;
+        margin-top: $spacing-xs;
+        color: #5f6368;
+        font-size: 0.8rem;
+      }
     }
 
     .options {
@@ -31,8 +61,18 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: $spacing-lg;
-      .remember { display: flex; align-items: center; gap: $spacing-xs; }
-      .forgot { color: $primary-color; text-decoration: none; font-size: 0.9rem; }
+
+      .remember {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+      }
+
+      .forgot {
+        color: $primary-color;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
     }
 
     .p-button {
@@ -44,7 +84,11 @@
       text-align: center;
       font-size: 0.9rem;
       color: #5f6368;
-      a { color: $primary-color; text-decoration: none; }
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+      }
     }
   }
 }
