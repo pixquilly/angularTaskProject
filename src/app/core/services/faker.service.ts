@@ -19,18 +19,6 @@ export class FakeService {
     this.generateTasks(100);
   }
 
-  private generateFakeJWT(): string {
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({
-      sub: faker.string.uuid(),
-      name: faker.person.fullName(),
-      iat: Math.floor(Date.now() / 1000)
-    }));
-    const signature = faker.string.alphanumeric(20);
-
-    return `${header}.${payload}.${signature}`;
-  }
-  
   private generateTasks(count: number = 5): void {
     const tasks: Task[] = Array.from({ length: count }).map(() => ({
       client: faker.person.fullName(),

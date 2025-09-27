@@ -20,7 +20,7 @@ import { MenuModule } from 'primeng/menu';
 })
 export class NavComponent {
 
-  profileItems: MenuItem[];
+  protected profileItems: MenuItem[];
 
   constructor(
     private router: Router,
@@ -36,20 +36,21 @@ export class NavComponent {
     this.avatarUrl = faker.image.avatar(); 
   }
   
-  avatarUrl: string;
-  logoUrl: string = "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"; //for some reason I could not import the logo neither from public or asset folders.
+  protected avatarUrl: string;
+  public logoUrl: string = "https://i.imgur.com/RHJZmNK.png"; //for some reason I could not import the logo neither from public or asset folders.
 
-  language = 'en';
-  languages = [
+  public language = 'en';
+
+  protected languages = [
     { label: 'EN', value: 'en' },
     { label: 'ES', value: 'es' }
   ];
 
-  isActive(route: string): boolean {
+  protected isActive(route: string): boolean {
     return this.router.url === route;
   }
 
-  logout() {
+  protected logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
