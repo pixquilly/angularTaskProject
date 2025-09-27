@@ -13,6 +13,7 @@ import { OverviewCard } from '../../core/interfaces/overview-card.interface';
 import { FakeService } from '../../core/services/faker.service';
 import { TaskStatus } from '../../core/enums/task-status.enum';
 import { StatusOptions } from '../../core/interfaces/status-options.interface';
+import { TaskNameOptions } from '../../core/interfaces/task-options.interface';
 
 @Component({
   selector: 'app-tasks',
@@ -74,7 +75,7 @@ export class TasksComponent {
   ];
 
   statusOptions: StatusOptions[] = [];
-  taskNameOptions!: { label: string, value: string }[];
+  taskNameOptions!: TaskNameOptions[];
   sortOptions = [{ label: 'Date Asc', value: 'asc' }, { label: 'Date Desc', value: 'desc' }];
   perPageOptions = [{ label: '5', value: '5' }, { label: '10', value: '10' }];
 

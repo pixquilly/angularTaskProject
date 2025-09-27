@@ -1,8 +1,7 @@
 import { TaskStatus } from "../enums/task-status.enum";
+import { TaskNameOptions } from "./task-options.interface";
 
-export interface OverviewCard {
-  status: TaskStatus;      // Use your TaskStatus enum
+export interface OverviewCard extends TaskNameOptions{
+  status: TaskStatus;
   statusClass: string;
-  value: string;
-  label: string;
 }
