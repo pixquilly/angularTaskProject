@@ -19,14 +19,14 @@ This project is an Angular 19 application with a dashboard and task management i
 1. **Clone the repository**:
 
 ```
-git clone <your-repo-url>
+git clone [<your-repo-url>](https://github.com/pixquilly/angularTaskProject)
 cd <project-folder>
 ```
 
 2. **Install dependencies**:
 
 ```
-npm install
+npm install --force 
 ```
 
 3. **Run the application**:
